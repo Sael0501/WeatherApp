@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">WeatherAppSael</string>
+
+    <!--    Logo-->
+    <string name="logo">WeatherApp</string>
+    <string name="tvLocation">Sayula, Jal.</string>
+    <string name="temperature">20°</string>
+    <string name="sense">Stormy</string>
+    <string name="date">Wednesday, 09 March</string>
+    <string name="StringTvWind">Wind</string>
+    <string name="StringTvValueWind">9 km/h</string>
+    <string name="StringTvValuePressure">100</string>
+    <string name="StringTvPressure">Pressure</string>
+    <string name="StringTvValueHumidity">1000</string>
+    <string name="StringTvHumidity">Humidity</string>
+
 </resources>

@@ -1,18 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".view.MainActivity">
 
+    <ImageView
+        android:id="@+id/ivLocationMain"
+        android:layout_width="29dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_twotone_place_24" />
+
     <TextView
+        android:id="@+id/tvLocationMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="@string/tvLocation"
+        app:layout_constraintStart_toEndOf="@+id/ivLocationMain"
+        app:layout_constraintTop_toTopOf="@+id/ivLocationMain" />
+
+    <TextView
+        android:id="@+id/tvWeatherMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/sense"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvTemperatureMain"
+        app:layout_constraintStart_toStartOf="@+id/tvTemperatureMain"
+        app:layout_constraintTop_toBottomOf="@+id/tvTemperatureMain" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/tvTemperatureMain"
+        app:layout_constraintTop_toTopOf="@+id/tvTemperatureMain"
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvTemperatureMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="100sp"
+        android:text="@string/temperature"
+        app:layout_constraintStart_toStartOf="@+id/tvLocationMain"
+        app:layout_constraintTop_toBottomOf="@+id/tvLocationMain" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/date"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvWeatherMain"
+        app:layout_constraintStart_toStartOf="@+id/tvWeatherMain"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeatherMain" />
+
+    <View
+        android:id="@+id/dividerCv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/light_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressure" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStatus1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStatus2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66"/>
+
+    <ImageView
+        android:id="@+id/ivWind"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toStartOf="@+id/glStatus1"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/wind"
+        app:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/ivPressure"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toStartOf="@+id/glStatus2"
+        app:layout_constraintStart_toStartOf="@+id/glStatus1"
+        app:layout_constraintTop_toTopOf="@+id/ivWind"
+        app:srcCompat="@drawable/ic_twotone_device_thermostat_24"
+        app:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/ivHumidity"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/glStatus2"
+        app:layout_constraintTop_toTopOf="@+id/ivPressure"
+        app:srcCompat="@drawable/img"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/tvWind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/StringTvWind"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tvWindValue"
+        app:layout_constraintStart_toStartOf="@+id/tvWindValue"
+        app:layout_constraintTop_toBottomOf="@+id/tvWindValue" />
+
+    <TextView
+        android:id="@+id/tvWindValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/StringTvValueWind"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/ivWind"
+        app:layout_constraintStart_toStartOf="@+id/ivWind"
+        app:layout_constraintTop_toBottomOf="@+id/ivWind" />
+
+    <TextView
+        android:id="@+id/tvPressureValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/StringTvValuePressure"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/ivPressure"
+        app:layout_constraintStart_toStartOf="@+id/ivPressure"
+        app:layout_constraintTop_toBottomOf="@+id/ivPressure" />
+
+    <TextView
+        android:id="@+id/tvPressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/StringTvPressure"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tvPressureValue"
+        app:layout_constraintStart_toStartOf="@+id/tvPressureValue"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressureValue"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/tvValueHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/StringTvValueHumidity"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/ivHumidity"
+        app:layout_constraintStart_toStartOf="@+id/ivHumidity"
+        app:layout_constraintTop_toBottomOf="@+id/ivHumidity" />
+
+    <TextView
+        android:id="@+id/tvHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/StringTvHumidity"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/tvValueHumidity"
+        app:layout_constraintStart_toStartOf="@+id/tvValueHumidity"
+        app:layout_constraintTop_toBottomOf="@+id/tvValueHumidity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

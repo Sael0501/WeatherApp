@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/drawable/gradient.xml" value="0.1185" />
         <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/drawable/ic_baseline_settings.xml" value="0.11" />
         <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/drawable/ic_twotone_device_thermostat_24.xml" value="0.1275" />
         <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/drawable/ic_twotone_place_24.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
