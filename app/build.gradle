@@ -35,6 +35,9 @@ android {
 }
 
 dependencies {
+    //Android SplashScreen, android 12 no
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
+
     //Android SplashScreen
     implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
 
@@ -52,6 +55,7 @@ dependencies {
 
     //Gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
     //Coil
     implementation 'io.coil-kt:coil:1.4.0'

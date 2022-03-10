@@ -10,18 +10,18 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitInstance {
 
-    fun getRetrofit(context: Context): Retrofit {
-        //Visto con Jose
-        val okHttpClient = OkHttpClient.Builder()
-            .readTimeout(60, TimeUnit.SECONDS)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .addInterceptor(AuthInterceptor(context))
-            .build()
-        return Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org/")
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        fun getRetrofit(): Retrofit {
+            val okHttpClient = OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build()
+            return Retrofit.Builder()
+                .baseUrl("https://api.openweathermap.org/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
     }
 
     /*
@@ -30,19 +30,18 @@ object RetrofitInstance {
     con el token necesario para tener la autorizacion.
     Es como obtener el token general para todas las peticiones.
     */
-    class AuthInterceptor(context: Context) : Interceptor {
+   /* class AuthInterceptor(context: Context) : Interceptor {
         //private val shared = SharedPreferencesInstance.obtenerInstancia(context)
 
         override fun intercept(chain: Interceptor.Chain): Response {
             val requestBuilder = chain.request().newBuilder()
 
-            /*
+            *//*
             shared.obtenerSesion()?.let {
                 requestBuilder.addHeader("Authorization", "Bearer ${it.token}")
             }
-            */
+            *//*
 
             return chain.proceed(requestBuilder.build())
         }
-    }
-}
+    }*/

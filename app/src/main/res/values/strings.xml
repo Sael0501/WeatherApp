@@ -3,17 +3,44 @@
 
     <!--    Logo-->
     <string name="logo">WeatherApp</string>
+
+    <!--    Layout Main-->
     <string name="tvLocation">Sayula, Jal.</string>
-    <string name="temperature">20°</string>
+    <string name="temperature">20</string>
     <string name="sense">Stormy</string>
     <string name="date">Wednesday, 09 March</string>
-    <string name="StringTvWind">Wind</string>
-    <string name="StringTvValueWind">9 km/h</string>
-    <string name="StringTvValuePressure">100</string>
-    <string name="StringTvPressure">Pressure</string>
-    <string name="StringTvValueHumidity">1000</string>
-    <string name="StringTvHumidity">Humidity</string>
-    <string name="StringHourCv">11:00</string>
-    <string name="StringTemperatureCv">21°</string>
+    <string name="stringTvWind">Wind</string>
+    <string name="stringTvValueWind">9 km/h</string>
+    <string name="stringTvValuePressure">100</string>
+    <string name="stringTvPressure">Pressure</string>
+    <string name="stringTvValueHumidity">1000</string>
+    <string name="stringTvHumidity">Humidity</string>
+    <string name="stringTemperatureMax">Max: 30°</string>
+    <string name="stringTemperatureMin">Min: 20°</string>
+
+    <!--    CardViewHours-->
+    <string name="stringHourCv">11:00</string>
+    <string name="stringTemperatureCv">21°</string>
+
+
+
+    <string name="sensation">Sense</string>
+    <string name="updatedAt">Update</string>
+    <string name="error_ocurred">A ocurrido un error al cargar los datos</string>
+    <string name="permission_retionale">Se requieren permisos para usar esta app.</string>
+    <string name="no_location_detected">No se puede acceder a su ubicacion, rectifique que el servicio GPS este activado.</string>
+    <string name="permission_denied_explanation">Permiso denegado.</string>
+    <string name="settings">Settings</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="wind">Wind</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="textSensacion">Sensacion</string>
+    <string name="days_item_days">Lunes</string>
+    <string name="description_days">Description</string>
+    <string name="statusDay">Stormy</string>
+    <string name="grados">35°</string>
+    <string name="negativeGrados">-2°</string>
 
 </resources>
