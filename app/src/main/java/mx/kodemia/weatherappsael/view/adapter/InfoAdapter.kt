@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import mx.kodemia.weatherapp.core.SharedPreferencesInstance
 import mx.kodemia.weatherappsael.R
-import mx.kodemia.weatherappsael.model.ReInfo
+import mx.kodemia.weatherappsael.model.RecyclerInfo
 
-class InfoAdapter(val activity: Activity, val weatherEntity: List<ReInfo>, val icon: List<Int>): RecyclerView.Adapter<InfoAdapter.InfoHolder>() {
+class InfoAdapter(val activity: Activity, val weatherEntity: List<RecyclerInfo>, val icon: List<Int>): RecyclerView.Adapter<InfoAdapter.InfoHolder>() {
 
     //SharedPreferences
     lateinit var shared : SharedPreferencesInstance
@@ -39,7 +39,6 @@ class InfoAdapter(val activity: Activity, val weatherEntity: List<ReInfo>, val i
     override fun getItemCount(): Int = 5
 
     class InfoHolder(view: View): RecyclerView.ViewHolder(view){
-        val cardView: MaterialCardView = view.findViewById(R.id.cardView_item_info)
         val iv_Icon: ImageView = view.findViewById(R.id.imageViewIconInfo)
         val tv_info_info: TextView = view.findViewById(R.id.textViewInfoInfo)
         val tv_concept_info: TextView = view.findViewById(R.id.textViewConceptInfo)

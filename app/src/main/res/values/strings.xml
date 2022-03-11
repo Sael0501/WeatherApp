@@ -17,6 +17,8 @@
     <string name="stringTvHumidity">Humidity</string>
     <string name="stringTemperatureMax">Max: 30°</string>
     <string name="stringTemperatureMin">Min: 20°</string>
+    <string name="imageviewiconhoursdescription" translatable="false">Image relate to Weather Forecast at Hours</string>
+    <string name="image_description_item_days" translatable="false">Image relate to Weather Forecast at Day</string>
 
     <!--    CardViewHours-->
     <string name="stringHourCv">11:00</string>
@@ -42,5 +44,8 @@
     <string name="statusDay">Stormy</string>
     <string name="grados">35°</string>
     <string name="negativeGrados">-2°</string>
+    <string name="regresar"><![CDATA[< Back]]></string>
+    <string name="unidad_temperatura">Unidad</string>
+    <string name="messages_header">Configuraciones</string>
 
 </resources>

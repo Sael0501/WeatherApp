@@ -14,7 +14,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
@@ -25,9 +24,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import mx.kodemia.weatherapp.core.SharedPreferencesInstance
 import mx.kodemia.weatherapp.core.checkPermissions
 import mx.kodemia.weatherapp.core.startLocationPermissionRequest
@@ -37,12 +34,9 @@ import mx.kodemia.weatherapp.view.adapters.InfoAdapter
 import mx.kodemia.weatherappsael.R
 import mx.kodemia.weatherappsael.databinding.ActivityMainBinding
 import mx.kodemia.weatherappsael.model.*
-import mx.kodemia.weatherappsael.network.WeatherService
 import mx.kodemia.weatherappsael.utils.checkForInternet
 import mx.kodemia.weatherappsael.view.adapter.DaysAdapter
 import mx.kodemia.weatherappsael.viewModels.MainActivityViewModel
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,17 +46,19 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivityError"
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 34
 
-    private val listInfo: MutableList<ReInfo> = mutableListOf()
-    private val listInfoSecondView: MutableList<ReInfo> = mutableListOf()
+    private val listInfo: MutableList<RecyclerInfo> = mutableListOf()
+    private val listInfoSecondView: MutableList<RecyclerInfo> = mutableListOf()
     private val listIncons: MutableList<Int> = mutableListOf()
 
+    var unit = "metric"
+    var languageCode = "es"
+    val viewModel: MainActivityViewModel by viewModels()
     private var latitude = ""
     private var longitude = ""
 
     private var units = false
     private var language = false
-    var unit = "metric"
-    var languageCode = "es"
+
 
     private lateinit var binding: ActivityMainBinding
 
@@ -70,11 +66,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var shared: SharedPreferencesInstance
 
-    val viewModel: MainActivityViewModel by viewModels()
-
-    /**
-     * Punto de entrada para el API Fused Location Provider.
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
@@ -84,20 +75,33 @@ class MainActivity : AppCompatActivity() {
         if (!checkPermissions(this)) {
             requestPermissions()
         } else {
-            // despues de que se obtiene la location se ejecuta el setUpViewData con esa location
-            getLastLocation() { location ->
-                mandarDatosWeather(
-                    latitude,
-                    longitude,
-                    unit,
-                    languageCode,
-                    "37fb2ab875e61b9769e410901358661b"
-                )
-                mandarDatosCity(latitude, longitude, "37fb2ab875e61b9769e410901358661b")
+            getLastLocation(){ location ->
+                if(units){
+                    unit = "imperial"
+                }else{
+                    unit = "metric"
+                }
+                if(language){
+                    languageCode = "en"
+                }else{
+                    languageCode = "es"
+                }
+                mandarDatosWeather(latitude,longitude,unit,languageCode,"37fb2ab875e61b9769e410901358661b")
+                mandarDatosCity(latitude,longitude,"37fb2ab875e61b9769e410901358661b")
                 observers()
             }
         }
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        units = sharedPreferences.getBoolean("unitsApp", false)
+        language = sharedPreferences.getBoolean("languageApp", false)
     }
+
+    private fun IntentSettings() {
+        startActivity(Intent(this,SettingsActivity::class.java))
+        finish()
+    }
+
+
     private fun init(){
         //Shared
         shared = SharedPreferencesInstance.obtenerInstancia(this)
@@ -107,6 +111,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.onCreate()
+
     }
 
     private fun mandarDatosWeather(lat: String, lon: String, units: String?, lang: String?, appid: String) {
@@ -127,7 +132,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        viewModel.getCityResponse.observe(this){ cityEntity: List<City> ->
+        viewModel.getCityResponse.observe(this){ cityEntity: List<CityEntity> ->
             lifecycleScope.launch {
                 cityEntity.apply {
                     formatResponseCity(cityEntity)
@@ -138,51 +143,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun requestPermissions() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-        ) {
-            //Provide an additional rationale to the user. This would happen if the user denied the
-            // request previously, but didn´t check the "Don´t ask again" checkbox.
-            Log.i(TAG, "Displaying permission rationale to provide additional context.")
-            showSnackbar(R.string.permission_retionale, android.R.string.ok)
-            {
-                //Request permission
-                startLocationPermissionRequest(this)
-            }
-        } else {
-            //Request permission. It´s possible this can be auto answered if device policy
-            //Si la configuracion del dispositivo define el permiso a un estado prefefinido o
-            //si  el usuario anteriormente activo "No preguntar de nuevo"
-            Log.i(TAG, "Solicitando permiso")
-            startLocationPermissionRequest(this)
-        }
-    }
-
-    private fun showSnackbar(
-        snackStrId: Int,
-        actionStrId: Int = 0,
-        listener: View.OnClickListener? = null
-    ) {
-        val snackbar = Snackbar.make(
-            findViewById(android.R.id.content), getString(snackStrId),
-            BaseTransientBottomBar.LENGTH_INDEFINITE
-        )
-
-        if (actionStrId != 0 && listener != null) {
-            snackbar.setAction(getString(actionStrId), listener)
-        }
-        snackbar.show()
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getLastLocation(onLocation: (location: Location) -> Unit) {
+    @SuppressLint( "MissingPermission")
+    private fun getLastLocation(onLocation: (location: Location) -> Unit){
         Log.d(TAG, "Aqui estoy: $latitude Long: $longitude")
         fusedLocationClient.lastLocation
             .addOnCompleteListener { taskLocation ->
-                if (taskLocation.isSuccessful && taskLocation.result != null) {
+                if(taskLocation.isSuccessful && taskLocation.result != null){
                     val location = taskLocation.result
 
                     latitude = location?.latitude.toString()
@@ -190,58 +156,49 @@ class MainActivity : AppCompatActivity() {
                     Log.e(TAG, "GetLastLoc Lat: $latitude Long: $longitude")
 
                     onLocation(taskLocation.result)
-                } else {
+                }else{
                     Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                     showSnackbar(R.string.no_location_detected)
                 }
             }
     }
 
-    private fun setupViewData(location: Location) {
-        if (checkForInternet(this)) {
+    private fun setupViewData(location: Location){
+        if(checkForInternet(this)) {
             lifecycleScope.launch {
                 latitude = location.latitude.toString()
                 longitude = location.longitude.toString()
             }
-        } else {
+        }else{
             showError("Sin acceso a Internet")
-            binding.containerPrimaryMain.isVisible = false
             binding.constraineLayoutContainerWeather.isVisible = false
         }
     }
 
-    private fun initRecycler(recyclerView: RecyclerView, recyclerViewSecondView: RecyclerView, weatherEntity: OneCall){
+
+
+    private fun initRecycler(recyclerView: RecyclerView, weatherEntity: OneCall){
         val sunrise = weatherEntity.current.sunrise
-        val sunriseSecond = weatherEntity.daily[1].sunrise
         val sunriseFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise * 1000))
-        val sunriseFormatSecond = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunriseSecond * 1000))
 
         val sunset = weatherEntity.current.sunset
-        val sunsetSecond = weatherEntity.daily[1].sunset
         val sunsetFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset * 1000))
-        val sunsetFormatSecond = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunsetSecond * 1000))
 
         val adaptador = InfoAdapter(this,listInfo,listIncons)
-        val adapterSecondView = InfoAdapter(this,listInfoSecondView,listIncons)
 
-        listInfo.add(ReInfo(weatherEntity.current.humidity.toString(),R.string.humidity))
-        listInfoSecondView.add(ReInfo(weatherEntity.daily[1].humidity.toString(),R.string.humidity))
+        listInfo.add(RecyclerInfo(weatherEntity.current.humidity.toString(),R.string.humidity))
         listIncons.add(R.drawable.humidity)
 
-        listInfo.add(ReInfo(weatherEntity.current.pressure.toString(),R.string.pressure))
-        listInfoSecondView.add(ReInfo(weatherEntity.daily[1].pressure.toString(),R.string.pressure))
+        listInfo.add(RecyclerInfo(weatherEntity.current.pressure.toString(),R.string.pressure))
         listIncons.add(R.drawable.pressure)
 
-        listInfo.add(ReInfo(weatherEntity.current.wind_speed.toString(),R.string.wind))
-        listInfoSecondView.add(ReInfo(weatherEntity.daily[1].wind_speed.toString() + "km/h",R.string.wind))
+        listInfo.add(RecyclerInfo(weatherEntity.current.wind_speed.toString() + "km/h",R.string.wind))
         listIncons.add(R.drawable.wind)
 
-        listInfo.add(ReInfo(weatherEntity.current.sunrise.toString(),R.string.sunrise))
-        listInfoSecondView.add(ReInfo(sunriseFormatSecond,R.string.sunrise))
+        listInfo.add(RecyclerInfo(sunriseFormat,R.string.sunrise))
         listIncons.add(R.drawable.sunrise)
 
-        listInfo.add(ReInfo(weatherEntity.current.sunset.toString(),R.string.sunset))
-        listInfoSecondView.add(ReInfo(sunsetFormatSecond,R.string.sunset))
+        listInfo.add(RecyclerInfo(sunsetFormat,R.string.sunset))
         listIncons.add(R.drawable.sunset)
 
 
@@ -249,10 +206,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
             adapter = adaptador
-        }
-        recyclerViewSecondView.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
-            adapter = adapterSecondView
         }
     }
 
@@ -266,14 +219,14 @@ class MainActivity : AppCompatActivity() {
     private fun initRecyclerDays(days: List<Daily>, recyclerView: RecyclerView){
         val adapterView = DaysAdapter(this,days)
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
             adapter = adapterView
         }
     }
 
-    private fun formatResponseCity(cityEntity: List<City>){
-        val cityName = cityEntity[0].name
-        val country = cityEntity[0].country
+    private fun formatResponseCity(cityEntityEntity: List<CityEntity>){
+        val cityName = cityEntityEntity[0].name
+        val country = cityEntityEntity[0].country
         val address = "$cityName, $country"
 
         binding.apply {
@@ -340,9 +293,15 @@ class MainActivity : AppCompatActivity() {
                 tvWeatherMain.text = status
                 containerPrimaryMain.isVisible = true
                 constraineLayoutContainerWeather.isVisible = true
-                ivCardView.load(iconUrl)
-                initRecycler(recyclerDay, recyclerViewNextHours, weatherEntity)
-                initRecyclerHours(weatherEntity.hourly,recyclerViewNextHours)
+
+                ivSettings.setOnClickListener {
+                    IntentSettings()
+                }
+
+                constraineLayoutContainerWeather.isVisible = true
+                ivCloud.load(iconUrl)
+                initRecycler(rvInfo, weatherEntity)
+                initRecyclerHours(weatherEntity.hourly,rvNextHour)
                 initRecyclerDays(weatherEntity.daily,recyclerDay)
             }
 
@@ -354,15 +313,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    private fun requestPermissions() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        ) {
+
+            Log.i(TAG, "Displaying permission rationale to provide additional context.")
+            showSnackbar(R.string.permission_retionale, android.R.string.ok)
+            {
+                //Request permission
+                startLocationPermissionRequest(this)
+            }
+        } else {
+
+            Log.i(TAG, "Solicitando permiso")
+            startLocationPermissionRequest(this)
+        }
     }
 
-    private fun showIndicator(visible: Boolean) {
-        binding.pbMainLoading.isVisible = visible
-    }
-
-    override fun onRequestPermissionsResult(
+            override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>, // TODO: Tenia un out antes del String
         grantResults: IntArray
@@ -390,5 +361,27 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun showError(message: String){
+        Toast.makeText(this,message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun showIndicator(visible: Boolean){
+        binding.pbMainLoading.isVisible = visible
+    }
+
+    private fun showSnackbar(
+        snackStrId: Int,
+        actionStrId: Int = 0,
+        listener: View.OnClickListener? = null
+    ){
+        val snackbar = Snackbar.make(findViewById(android.R.id.content), getString(snackStrId),
+            BaseTransientBottomBar.LENGTH_INDEFINITE
+        )
+
+        if(actionStrId != 0 && listener != null){
+            snackbar.setAction(getString(actionStrId), listener)
+        }
+        snackbar.show()
     }
 }

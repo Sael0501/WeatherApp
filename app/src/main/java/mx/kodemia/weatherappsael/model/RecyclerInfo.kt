@@ -1,6 +1,6 @@
 package mx.kodemia.weatherappsael.model
 
-data class ReInfo(
+data class RecyclerInfo(
     val info: String,
     val concept: Int
 )

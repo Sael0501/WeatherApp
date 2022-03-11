@@ -31,7 +31,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
-            android:contentDescription="@string/description_days"
+            android:contentDescription="@string/image_description_item_days"
             app:layout_constraintEnd_toEndOf="@+id/textViewDay"
             app:layout_constraintStart_toStartOf="@+id/textViewDay"
             app:layout_constraintTop_toBottomOf="@+id/textViewDay"

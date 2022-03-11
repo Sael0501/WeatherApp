@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface WeatherService {
+interface Weather {
     @GET("data/2.5/onecall")
     suspend fun getWeatherById(
         @Query("lat") lat: String,

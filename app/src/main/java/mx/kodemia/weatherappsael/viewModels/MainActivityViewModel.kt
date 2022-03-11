@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import mx.kodemia.weatherapp.network.service.GetCity
 import mx.kodemia.weatherapp.network.service.GetWeather
-import mx.kodemia.weatherappsael.model.City
+import mx.kodemia.weatherappsael.model.CityEntity
 import mx.kodemia.weatherappsael.model.OneCall
 
 class MainActivityViewModel  : ViewModel(){
@@ -17,7 +17,7 @@ class MainActivityViewModel  : ViewModel(){
 
     //LiveDatas
     val getWeatherResponse = MutableLiveData<OneCall>()
-    val getCityResponse = MutableLiveData<List<City>>()
+    val getCityResponse = MutableLiveData<List<CityEntity>>()
 
     fun onCreate(){
         serviceGetWeather = GetWeather()
@@ -36,9 +36,9 @@ class MainActivityViewModel  : ViewModel(){
         }
     }
 
-    fun getCity(lat: String, lon:String, appid: String){
+    fun getCity(lon:String, appid: String,lat: String, ){
         viewModelScope.launch {
-            val response = serviceGetCity.getCityService(lat, lon, appid)
+            val response = serviceGetCity.getCityService(lon, appid,lat, )
             if (response.isSuccessful){
                 getCityResponse.postValue(response.body())
             }else{

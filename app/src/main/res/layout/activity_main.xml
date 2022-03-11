@@ -59,7 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTemperatureMain" />
 
         <ImageView
-            android:id="@+id/ivCardView"
+            android:id="@+id/ivCloud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
@@ -94,19 +94,6 @@
             app:layout_constraintStart_toStartOf="@+id/tvWeatherMain"
             app:layout_constraintTop_toBottomOf="@+id/tvWeatherMain" />
 
-        <View
-            android:id="@+id/dividerCv"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@color/light_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPressure" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/glStatus1"
             android:layout_width="wrap_content"
@@ -122,115 +109,11 @@
             app:layout_constraintGuide_percent="0.66" />
 
         <ImageView
-            android:id="@+id/ivWind"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/glStatus1"
-            app:layout_constraintHorizontal_bias="0.539"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDateMain"
-            app:srcCompat="@drawable/wind"
-            app:tint="@color/white" />
-
-        <ImageView
-            android:id="@+id/ivPressure"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/glStatus2"
-            app:layout_constraintStart_toStartOf="@+id/glStatus1"
-            app:layout_constraintTop_toTopOf="@+id/ivWind"
-            app:srcCompat="@drawable/pressure"
-            app:tint="@color/white" />
-
-        <ImageView
-            android:id="@+id/ivHumidity"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/glStatus2"
-            app:layout_constraintTop_toTopOf="@+id/ivPressure"
-            app:srcCompat="@drawable/humidity"
-            app:tint="@color/white" />
-
-        <TextView
-            android:id="@+id/tvWind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/stringTvWind"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/tvWindValue"
-            app:layout_constraintStart_toStartOf="@+id/tvWindValue"
-            app:layout_constraintTop_toBottomOf="@+id/tvWindValue"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/tvWindValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/stringTvValueWind"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/ivWind"
-            app:layout_constraintStart_toStartOf="@+id/ivWind"
-            app:layout_constraintTop_toBottomOf="@+id/ivWind"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/tvPressureValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/stringTvValuePressure"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/ivPressure"
-            app:layout_constraintStart_toStartOf="@+id/ivPressure"
-            app:layout_constraintTop_toBottomOf="@+id/ivPressure"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/tvPressure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/stringTvPressure"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/tvPressureValue"
-            app:layout_constraintStart_toStartOf="@+id/tvPressureValue"
-            app:layout_constraintTop_toBottomOf="@+id/tvPressureValue"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/tvValueHumidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/stringTvValueHumidity"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/ivHumidity"
-            app:layout_constraintStart_toStartOf="@+id/ivHumidity"
-            app:layout_constraintTop_toBottomOf="@+id/ivHumidity"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/tvHumidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@string/stringTvHumidity"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/tvValueHumidity"
-            app:layout_constraintStart_toStartOf="@+id/tvValueHumidity"
-            app:layout_constraintTop_toBottomOf="@+id/tvValueHumidity"
-            tools:ignore="TextContrastCheck" />
-
-        <ImageView
             android:id="@+id/imageView"
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="236dp"
+            android:layout_marginEnd="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_twotone_device_thermostat_24" />
@@ -257,7 +140,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTemperatureMax" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_next_hours"
+            android:id="@+id/rvNextHour"
             android:layout_width="0dp"
             android:layout_height="120dp"
             android:layout_marginStart="10dp"
@@ -267,7 +150,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dividerCv" />
+            app:layout_constraintTop_toBottomOf="@+id/rvInfo" />
 
         <TextView
             android:id="@+id/tvSimbolo"
@@ -284,11 +167,35 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_day"
             android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/rvNextHour"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/rvNextHour"
+            app:layout_constraintTop_toBottomOf="@+id/rvNextHour" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvInfo"
+            android:layout_width="0dp"
             android:layout_height="120dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/recycler_view_next_hours"
-            app:layout_constraintStart_toStartOf="@+id/recycler_view_next_hours"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view_next_hours" />
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDateMain" />
+
+        <ImageView
+            android:id="@+id/ivSettings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_settings"
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

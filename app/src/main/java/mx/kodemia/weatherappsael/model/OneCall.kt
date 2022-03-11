@@ -7,5 +7,5 @@ data class OneCall(
     val current: Current,
     val daily:List<Daily>,
     val hourly: List<Current>,
-    var city: City?
+    var cityEntity: CityEntity?
 ): Serializable

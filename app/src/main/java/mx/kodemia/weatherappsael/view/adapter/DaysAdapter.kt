@@ -16,10 +16,7 @@ import java.util.*
 
 class DaysAdapter(private val context: Context, private val listDays: List<Daily>): RecyclerView.Adapter<DaysAdapter.DaysHolder>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): DaysAdapter.DaysHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DaysAdapter.DaysHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_cardview_days,parent,false)
         return DaysAdapter.DaysHolder(view)
     }
