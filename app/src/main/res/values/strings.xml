@@ -19,6 +19,7 @@
     <string name="stringTemperatureMin">Min: 20°</string>
     <string name="imageviewiconhoursdescription" translatable="false">Image relate to Weather Forecast at Hours</string>
     <string name="image_description_item_days" translatable="false">Image relate to Weather Forecast at Day</string>
+    <string name="weather_status_image" translatable="false">image_shows_weather_status</string>
 
     <!--    CardViewHours-->
     <string name="stringHourCv">11:00</string>

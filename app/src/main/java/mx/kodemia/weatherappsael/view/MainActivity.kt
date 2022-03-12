@@ -247,9 +247,7 @@ class MainActivity : AppCompatActivity() {
             val cityName = ""//weatherEntity.name
             val country = ""//weatherEntity.sys.country
             val address = "$cityName, $country"
-            val tempMin = ""//"Min: ${weatherEntity.main.temp_min.toInt()}°"
-            val tempMax = ""//"Max: ${weatherEntity.main.temp_max.toInt()}°"
-            var status = ""
+             var status = ""
             val weatherDescription = weatherEntity.current.weather[0].description
             if(weatherDescription.isNotEmpty()){
                 status = (weatherDescription[0].uppercaseChar() + weatherDescription.substring(1))
@@ -262,29 +260,14 @@ class MainActivity : AppCompatActivity() {
                 ).format(Date(dt * 1000))
             }"
             val sunrise = weatherEntity.current.sunrise
-            val sunriseFormat =
-                SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise * 1000))
+            val sunriseFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise * 1000))
             val sunset = weatherEntity.current.sunset
-            val sunsetFormat =
-                SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset * 1000))
-            val wind = "${weatherEntity.current.wind_speed} km/h"
-            val pressure = "${weatherEntity.current.pressure} mb"
-            val humidity = "${weatherEntity.current.humidity}%"
-            val feelsLike = getString(R.string.textSensacion) + " ${weatherEntity.current.feels_like.toInt()}$unitSymbol"
-            val icon = weatherEntity.current.weather[0].icon
-            val iconUrl = "https://openweathermap.org/img/w/$icon.png"
-
-            val iconSecond = weatherEntity.daily[1].weather.first().icon
-            val iconUrlSecond = "https://openweathermap.org/img/w/$iconSecond.png"
-            val tempInDayTom = weatherEntity.daily[1].temp.day.toInt().toString()
-            val tempInNightTom = "/" + weatherEntity.daily[1].temp.night.toInt().toString() + unitSymbol
+            val sunsetFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset * 1000))
+            val icon = weatherEntity.current.weather[0].icon.replace('n','d')
+            val iconUrl = resources.getIdentifier("ic_weather_$icon", "drawable", packageName)
             var statusTom = ""
             val forecastTom = weatherEntity.daily[1].weather.first().description
-            if(forecastTom.isNotEmpty()){
-                statusTom = (forecastTom[0].uppercaseChar() + forecastTom.substring(1))
-            }
-
-            //binding.addressTextView.text = address
+            if(forecastTom.isNotEmpty()) { statusTom = (forecastTom[0].uppercaseChar() + forecastTom.substring(1)) }
 
             binding.apply {
                 tvDateMain.text = updateAt

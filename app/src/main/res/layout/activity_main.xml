@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="4dp"
+            android:contentDescription="@string/weather_status_image"
             app:layout_constraintStart_toEndOf="@+id/tvTemperatureMain"
             app:layout_constraintTop_toTopOf="@+id/tvTemperatureMain"
             tools:ignore="ImageContrastCheck"
