@@ -3,8 +3,8 @@ package mx.kodemia.weatherapp.network.service
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import mx.kodemia.weatherappsael.model.CityEntity
-import mx.kodemia.weatherappsael.network.City
-import mx.kodemia.weatherappsael.network.RetrofitInstance
+import mx.kodemia.weatherappsael.model.network.City
+import mx.kodemia.weatherappsael.model.network.RetrofitInstance
 import retrofit2.Response
 
 class GetCity {

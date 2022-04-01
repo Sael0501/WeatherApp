@@ -1,4 +1,4 @@
-package mx.kodemia.weatherappsael.network
+package mx.kodemia.weatherappsael.model.network
 
 import android.content.Context
 import okhttp3.Interceptor

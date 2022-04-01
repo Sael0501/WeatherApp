@@ -1,4 +1,4 @@
-package mx.kodemia.weatherappsael.network
+package mx.kodemia.weatherappsael.model.network
 
 import mx.kodemia.weatherappsael.model.OneCall
 import mx.kodemia.weatherappsael.model.Weather

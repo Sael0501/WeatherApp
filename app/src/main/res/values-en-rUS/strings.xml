@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tvLocation">Localization</string>
+    <string name="temperature">Temperature</string>
+    <string name="date">Date</string>
+    <string name="sense">Sense</string>
+    <string name="stringTvPressure">Pressure</string>
+    <string name="stringTvHumidity">Humidity</string>
+    <string name="stringTvWind">Wind</string>
+    <string name="sensation">Sense</string>
+    <string name="updatedAt">Sense</string>
+    <string name="error_ocurred">An error occurred while loading the data</string>
+    <string name="permission_retionale">Permissions are required to use this app.</string>
+    <string name="no_location_detected">Your location can\'t be accessed, please check that the GPS service is enabled.</string>
+    <string name="permission_denied_explanation">Permission denied.</string>
+    <string name="settings">Settings</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="wind">Wind</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="textSensacion">Sense</string>
+    <string name="days_item_days">Monday</string>
+    <string name="description_days">Description</string>
+    <string name="statusDay">Stormy</string>
+    <string name="messages_header">Configurations</string>
+</resources>

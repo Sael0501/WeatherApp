@@ -3,6 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable-v24/sunny_24.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable/gradient.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable/ic_baseline_settings.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable/ic_twotone_device_thermostat_24.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable/ic_twotone_place_24.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/drawable/splash.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/layout/activity_splash.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/layout/item_cardview_days.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/layout/item_cardview_info.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/layout/item_hours.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/layout/settings_activity.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/Desafio4Final/WeatherApp/app/src/main/res/xml/root_preferences.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/drawable/gradient.xml" value="0.1185" />
         <entry key="..\:/Users/saela/OneDrive/Escritorio/Kodemia/Desafio 4/DesafioWeather/WeatherApp/app/src/main/res/drawable/ic_baseline_settings.xml" value="0.11" />

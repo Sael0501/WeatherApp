@@ -2,6 +2,7 @@ package mx.kodemia.weatherappsael.view
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -14,6 +15,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
@@ -70,6 +72,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         init()
 
+        // SplashScreen API
+       // installSplashScreen()
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         if (!checkPermissions(this)) {
@@ -86,8 +91,8 @@ class MainActivity : AppCompatActivity() {
                 }else{
                     languageCode = "es"
                 }
-                mandarDatosWeather(latitude,longitude,unit,languageCode,"37fb2ab875e61b9769e410901358661b")
-                mandarDatosCity(latitude,longitude,"37fb2ab875e61b9769e410901358661b")
+                mandarDatosWeather(latitude,longitude,unit,languageCode, getString(R.string.Baseapi), this )
+                mandarDatosCity(latitude,longitude,getString(R.string.Baseapi), this)
                 observers()
             }
         }
@@ -114,12 +119,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun mandarDatosWeather(lat: String, lon: String, units: String?, lang: String?, appid: String) {
-        viewModel.getWeather(lat, lon, units, lang, appid)
+    private fun mandarDatosWeather(lat: String, lon: String, units: String?, lang: String?, appid: String, activity:Activity) {
+        viewModel.getWeather(lat, lon, units, lang, appid, activity)
     }
 
-    private fun mandarDatosCity(lat: String, lon: String, appid: String){
-        viewModel.getCity(lat, lon, appid)
+    private fun mandarDatosCity(lat: String, lon: String, appid: String, activity: Activity){
+        viewModel.getCity(lat, lon, appid, activity)
     }
 
     private fun observers(){
@@ -246,8 +251,7 @@ class MainActivity : AppCompatActivity() {
             val temp = "${weatherEntity.current.temp.toInt()}"
             val cityName = ""//weatherEntity.name
             val country = ""//weatherEntity.sys.country
-            val address = "$cityName, $country"
-             var status = ""
+            var status = ""
             val weatherDescription = weatherEntity.current.weather[0].description
             if(weatherDescription.isNotEmpty()){
                 status = (weatherDescription[0].uppercaseChar() + weatherDescription.substring(1))
@@ -259,10 +263,6 @@ class MainActivity : AppCompatActivity() {
                     Locale.ENGLISH
                 ).format(Date(dt * 1000))
             }"
-            val sunrise = weatherEntity.current.sunrise
-            val sunriseFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunrise * 1000))
-            val sunset = weatherEntity.current.sunset
-            val sunsetFormat = SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(Date(sunset * 1000))
             val icon = weatherEntity.current.weather[0].icon.replace('n','d')
             val iconUrl = resources.getIdentifier("ic_weather_$icon", "drawable", packageName)
             var statusTom = ""

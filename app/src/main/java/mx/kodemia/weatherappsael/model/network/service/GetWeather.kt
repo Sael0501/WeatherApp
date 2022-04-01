@@ -4,8 +4,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 import mx.kodemia.weatherappsael.model.OneCall
-import mx.kodemia.weatherappsael.network.RetrofitInstance
-import mx.kodemia.weatherappsael.network.Weather
+import mx.kodemia.weatherappsael.model.network.RetrofitInstance
+import mx.kodemia.weatherappsael.model.network.Weather
 import retrofit2.Response
 
 class GetWeather() {

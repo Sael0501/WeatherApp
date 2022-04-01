@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center_vertical"
     android:background="@drawable/gradient"
-    tools:context=".SplashScreen">
+    tools:context=".view.SplashActivity">
 
     <ImageView
         android:id="@+id/logoImageView"
@@ -20,7 +20,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/appTextView"
+        android:id="@+id/tvSplash"
         style="@style/TextAppearance.MaterialComponents.Headline3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

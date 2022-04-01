@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -36,10 +37,8 @@ android {
 
 dependencies {
     //Android SplashScreen, android 12 no
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
 
-    //Android SplashScreen
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
 
     //Shared Preferences
     implementation 'androidx.preference:preference:1.2.0'

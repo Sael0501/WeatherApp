@@ -1,4 +1,4 @@
-package mx.kodemia.weatherappsael.network
+package mx.kodemia.weatherappsael.model.network
 
 import mx.kodemia.weatherappsael.model.CityEntity
 import retrofit2.Response
