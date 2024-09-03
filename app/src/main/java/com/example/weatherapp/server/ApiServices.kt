@@ -12,6 +12,6 @@ interface ApiServices {
        @Query("lat") lat:Double,
        @Query("lon") lon:Double,
        @Query("units") units:String,
-       @Query("app") ApiKey:String,
+       @Query("appid") ApiKey:String,
     ): Call<CurrentResponseApi>
 }

@@ -4,10 +4,10 @@ import com.example.weatherapp.server.ApiServices
 
 class WeatherRepository(val api: ApiServices) {
 
-    fun getCurrentWeather(lat: Double, lon: Double, unit: String) =
-        api.getCurrentWeatger(lat,lon,unit, API_KEY)
+    fun getCurrentWeather(lat: Double, lng: Double, unit: String) =
+        api.getCurrentWeatger(lat,lng,unit, "d322ab245e818083b5e6a021eda1908b")
 
     companion object{
-        const val API_KEY = "fc860cc3326714bd7649985227d269c2"
+        const val API_KEY = "d322ab245e818083b5e6a021eda1908b"
     }
 }
